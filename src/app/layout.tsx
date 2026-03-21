@@ -1,8 +1,8 @@
 import "./globals.css";
 import { Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import type { Metadata } from "next";
-import { Navbar } from "@/ui/navbar/NavBar";
-import { Sidebar } from "@/ui/sidebar/SideBar";
+import { ThemeProvider } from "@/components/theme-provider";
+import { SiteHeader } from "@/components/docs/site-header";
 
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -17,8 +17,8 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Neobrutal UI Library",
-  description: "A reusable UI library with a neobrutalist aesthetic.",
+  title: "TASKIEE | Neo-brutalist UI Library",
+  description: "A premium Neo-brutalist UI component library documentation and showcase.",
 };
 
 export default function RootLayout({
@@ -27,22 +27,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${grotesk.variable} ${plexMono.variable}`}>
-      <body className="bg-neutral-light text-black font-plex min-h-screen">
-        {/* Fixed Navbar */}
-        <Navbar />
-
-        {/* Flex container with Sidebar and Page */}
-        <div className="flex pt-[56px]"> {/* 56px matches navbar height */}
-          <Sidebar />
-          <main className="ml-64 w-full p-8">
-            <div className="bg-white rounded-lg border-2 border-black shadow-[8px_8px_0px_black] p-6 max-w-4xl">
-              {children}
-            </div>
-          </main>
-        </div>
+    <html lang="en" suppressHydrationWarning className={`${grotesk.variable} ${plexMono.variable}`}>
+      <body className="min-h-screen bg-background font-sans antialiased text-foreground">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="relative flex min-h-screen flex-col">
+            <SiteHeader />
+            <div className="flex-1">{children}</div>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
 }
-

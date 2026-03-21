@@ -1,3 +1,137 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui;
+  --font-mono: "IBM Plex Mono", ui-mono-serif, monospace;
 
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-neo-purple: #A855F7;
+  --color-neo-cyan: #22D3EE;
+  --color-neo-green: #4ADE80;
+  --color-neo-yellow: #FACC15;
+  --color-neo-bg-secondary: var(--neo-bg-secondary);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --shadow-neo: var(--neo-shadow);
+  --shadow-neo-hover: var(--neo-shadow-hover);
+
+  --rotate-y-180: rotateY(180deg);
+}
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
+    --primary: #000000;
+    --primary-foreground: #ffffff;
+    --secondary: #e5e7eb;
+    --secondary-foreground: #18181b;
+    --accent: #e5e7eb;
+    --accent-foreground: #18181b;
+    --border: #000000;
+    --input: #000000;
+    --ring: #000000;
+    --radius: 0rem;
+
+    /* Neo-brutalist Specific - Optimized Contrast for Light Mode */
+    --neo-border: #000000;
+    --neo-shadow: 4px 4px 0px 0px #000000;
+    --neo-shadow-hover: 2px 2px 0px 0px #000000;
+    --neo-bg-secondary: #fdfdfd; /* Crisp white-gray for cards */
+  }
+
+  .dark {
+    --background: #000000;
+    --foreground: #fafafa;
+    --muted: #111111;
+    --muted-foreground: #a1a1aa;
+    --primary: #fafafa;
+    --primary-foreground: #18181b;
+    --secondary: #111111;
+    --secondary-foreground: #fafafa;
+    --accent: #111111;
+    --accent-foreground: #fafafa;
+    --border: #fafafa;
+    --input: #fafafa;
+    --ring: #d4d4d8;
+
+    /* Neo-brutalist Specific (Dark Mode) - Pure Black Impact */
+    --neo-border: #fafafa;
+    --neo-shadow: 4px 4px 0px 0px #fafafa;
+    --neo-shadow-hover: 2px 2px 0px 0px #fafafa;
+    --neo-bg-secondary: #000000;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+}
+
+/* Neo-brutalist Utilities */
+.neo-border {
+  border: 2px solid var(--neo-border);
+}
+
+.neo-shadow {
+  box-shadow: var(--neo-shadow);
+}
+
+.neo-shadow-hover {
+  transition: all 0.2s ease;
+}
+
+.neo-shadow-hover:hover {
+  box-shadow: var(--neo-shadow-hover);
+  transform: translate(2px, 2px);
+}
+
+.neo-shadow-hover:active {
+  box-shadow: none;
+  transform: translate(4px, 4px);
+}
+
+/* Hide scrollbars project-wide */
+@layer base {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface NavItem {
   label: string;
@@ -10,6 +11,9 @@ interface NavItem {
 interface NavbarProps {
   title?: string;
   navItems?: NavItem[];
+  isFixed?: boolean;
+  variant?: "default" | "purple" | "cyan" | "green" | "yellow";
+  className?: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -19,14 +23,34 @@ export const Navbar: React.FC<NavbarProps> = ({
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
+  isFixed = true,
+  variant = "default",
+  className,
 }) => {
+  const variantClasses = {
+    default: "bg-background text-foreground",
+    purple: "bg-neo-purple text-white shadow-[0_8px_0_0_white]",
+    cyan: "bg-neo-cyan text-black shadow-[0_8px_0_0_black]",
+    green: "bg-neo-green text-black shadow-[0_8px_0_0_black]",
+    yellow: "bg-neo-yellow text-black shadow-[0_8px_0_0_black]",
+  };
+
   return (
-    <header className="w-full fixed top-0 left-0 z-50 bg-neutral-light border-b-2 border-black shadow-sm px-4 py-3">
+    <header className={cn(
+      "w-full z-50 neo-border border-t-0 border-x-0 px-8 py-4 transition-all duration-300",
+      variantClasses[variant],
+      isFixed ? "fixed top-0 left-0" : "relative",
+      className
+    )}>
       <div className="flex items-center justify-between max-w-7xl mx-auto">
-        <h1 className="font-mono text-lg font-bold">{title}</h1>
-        <nav className="space-x-4 font-mono">
+        <h1 className="font-black text-2xl uppercase tracking-tighter italic">{title}</h1>
+        <nav className="flex items-center space-x-8 font-black uppercase tracking-widest text-xs">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:underline">
+            <Link 
+              key={item.href} 
+              href={item.href} 
+              className="hover:underline underline-offset-8 decoration-4"
+            >
               {item.label}
             </Link>
           ))}
