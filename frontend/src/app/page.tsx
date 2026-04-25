@@ -1,8 +1,8 @@
 import Link from "next/link"
 import { ArrowRight, Github } from "lucide-react"
-import { TaskButton } from "@/components/ui/task-button"
-import { TaskBadge } from "@/components/ui/task-badge"
-import { TaskCard, TaskCardHeader, TaskCardTitle, TaskCardDescription, TaskCardContent, TaskCardFooter } from "@/components/ui/task-card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 
 export default function LandingPage() {
   return (
@@ -76,26 +76,26 @@ export default function LandingPage() {
          <div className="w-full max-w-5xl mx-auto p-8 md:p-12 neo-border bg-white dark:bg-zinc-950 shadow-[12px_12px_0px_#22D3EE] dark:shadow-[12px_12px_0px_white]">
             <div className="grid gap-8 lg:grid-cols-2">
                <div className="space-y-6">
-                  <TaskCard className="shadow-[8px_8px_0px_black] dark:shadow-[8px_8px_0px_#A855F7]">
-                     <TaskCardHeader>
+                  <Card className="shadow-[8px_8px_0px_black] dark:shadow-[8px_8px_0px_#A855F7]">
+                     <CardHeader>
                         <div className="flex justify-between items-start">
-                           <TaskCardTitle>System Launch</TaskCardTitle>
-                           <TaskBadge variant="purple">Critical</TaskBadge>
+                           <CardTitle>System Launch</CardTitle>
+                           <Badge variant="purple">Critical</Badge>
                         </div>
-                        <TaskCardDescription>Awaiting manual confirmation from the terminal.</TaskCardDescription>
-                     </TaskCardHeader>
-                     <TaskCardContent>
+                        <CardDescription>Awaiting manual confirmation from the terminal.</CardDescription>
+                     </CardHeader>
+                     <CardContent>
                         <div className="p-4 bg-muted neo-border font-mono text-sm dark:text-black dark:bg-zinc-200">
                            {">"} EXECUTION_MODE: ENABLED<br/>
                            {">"} TARGET_STATION: DELTA_7<br/>
                            {">"} STATUS: READY
                         </div>
-                     </TaskCardContent>
-                     <TaskCardFooter className="flex justify-end gap-3">
-                        <TaskButton variant="outline" size="sm">Abort</TaskButton>
-                        <TaskButton variant="primary" size="sm">Confirm</TaskButton>
-                     </TaskCardFooter>
-                  </TaskCard>
+                     </CardContent>
+                     <CardFooter className="flex justify-end gap-3">
+                        <Button variant="outline" size="sm">Abort</Button>
+                        <Button variant="primary" size="sm">Confirm</Button>
+                     </CardFooter>
+                  </Card>
                </div>
                <div className="flex flex-col justify-center space-y-6">
                   <h3 className="text-3xl font-black uppercase leading-tight">
@@ -106,8 +106,8 @@ export default function LandingPage() {
                     Our components are built to be combined. Every piece of UI follows a strict 2px border and hard shadow policy, ensuring visual consistency across your entire application.
                   </p>
                   <div className="flex gap-4">
-                     <TaskBadge variant="cyan">Standardized</TaskBadge>
-                     <TaskBadge variant="yellow">Customizable</TaskBadge>
+                     <Badge variant="cyan">Standardized</Badge>
+                     <Badge variant="yellow">Customizable</Badge>
                   </div>
                </div>
             </div>

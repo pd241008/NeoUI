@@ -1,6 +1,6 @@
-import { TaskCard, TaskCardHeader, TaskCardTitle, TaskCardDescription, TaskCardContent, TaskCardFooter } from "@/components/ui/task-card"
-import { TaskButton } from "@/components/ui/task-button"
-import { TaskBadge } from "@/components/ui/task-badge"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 
 export default function DashboardShowcase() {
   return (
@@ -13,47 +13,47 @@ export default function DashboardShowcase() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <TaskCard>
-          <TaskCardHeader>
-            <TaskCardTitle>Revenue</TaskCardTitle>
-            <TaskCardDescription>Monthly recurring revenue</TaskCardDescription>
-          </TaskCardHeader>
-          <TaskCardContent>
+        <Card>
+          <CardHeader>
+            <CardTitle>Revenue</CardTitle>
+            <CardDescription>Monthly recurring revenue</CardDescription>
+          </CardHeader>
+          <CardContent>
             <div className="text-4xl font-black">$45,231.89</div>
             <p className="text-xs font-bold text-neo-green mt-2">+20.1% from last month</p>
-          </TaskCardContent>
-        </TaskCard>
+          </CardContent>
+        </Card>
 
-        <TaskCard>
-          <TaskCardHeader>
-            <TaskCardTitle>Active Users</TaskCardTitle>
-            <TaskCardDescription>Real-time session count</TaskCardDescription>
-          </TaskCardHeader>
-          <TaskCardContent>
+        <Card>
+          <CardHeader>
+            <CardTitle>Active Users</CardTitle>
+            <CardDescription>Real-time session count</CardDescription>
+          </CardHeader>
+          <CardContent>
             <div className="text-4xl font-black">+2350</div>
-            <TaskBadge variant="cyan" className="mt-2">+180.1% increase</TaskBadge>
-          </TaskCardContent>
-        </TaskCard>
+            <Badge variant="cyan" className="mt-2">+180.1% increase</Badge>
+          </CardContent>
+        </Card>
 
-        <TaskCard className="bg-neo-purple text-black">
-          <TaskCardHeader>
-            <TaskCardTitle className="text-black">Critical Tasks</TaskCardTitle>
-            <TaskCardDescription className="text-black/70">Urgent items requiring attention</TaskCardDescription>
-          </TaskCardHeader>
-          <TaskCardContent>
+        <Card className="bg-neo-purple text-black">
+          <CardHeader>
+            <CardTitle className="text-black">Critical Tasks</CardTitle>
+            <CardDescription className="text-black/70">Urgent items requiring attention</CardDescription>
+          </CardHeader>
+          <CardContent>
              <div className="space-y-2">
                 {[1, 2].map((i) => (
                    <div key={i} className="p-3 bg-white neo-border shadow-[2px_2px_0px_black] text-black text-sm font-bold flex justify-between items-center">
                       Task Request #{i}04
-                      <TaskBadge variant="yellow">Urgent</TaskBadge>
+                      <Badge variant="yellow">Urgent</Badge>
                    </div>
                 ))}
              </div>
-          </TaskCardContent>
-          <TaskCardFooter>
-             <TaskButton variant="outline" size="sm" className="w-full bg-white text-black hover:bg-zinc-100">View All</TaskButton>
-          </TaskCardFooter>
-        </TaskCard>
+          </CardContent>
+          <CardFooter>
+             <Button variant="outline" size="sm" className="w-full bg-white text-black hover:bg-zinc-100">View All</Button>
+          </CardFooter>
+        </Card>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
-import { TaskCard, TaskCardHeader, TaskCardTitle, TaskCardContent } from "@/components/ui/task-card"
-import { TaskBadge } from "@/components/ui/task-badge"
-import { TaskButton } from "@/components/ui/task-button"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -19,9 +19,9 @@ export default function TaskBoardPage() {
            <h1 className="text-4xl font-black uppercase tracking-tight">Task Board</h1>
            <p className="text-lg text-muted-foreground mt-2">Kanban-style management with Neo-brutalist aesthetics.</p>
         </div>
-        <TaskButton variant="primary" size="sm">
+        <Button variant="primary" size="sm">
            <Plus className="mr-2 h-4 w-4" /> New Task
-        </TaskButton>
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -38,17 +38,17 @@ export default function TaskBoardPage() {
                <span className="bg-white px-1.5 neo-border text-xs leading-none py-0.5">{col.tasks.length}</span>
             </div>
             {col.tasks.map((task, i) => (
-              <TaskCard key={i} className="shadow-[4px_4px_0px_black] hover:shadow-[6px_6px_0px_black] transition-all cursor-pointer">
-                <TaskCardHeader className="p-4 border-b-2">
-                  <TaskCardTitle className="text-base">{task}</TaskCardTitle>
-                </TaskCardHeader>
-                <TaskCardContent className="p-4 pt-4">
+              <Card key={i} className="shadow-[4px_4px_0px_black] hover:shadow-[6px_6px_0px_black] transition-all cursor-pointer">
+                <CardHeader className="p-4 border-b-2">
+                  <CardTitle className="text-base">{task}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-4 pt-4">
                    <div className="flex gap-2">
-                       <TaskBadge variant={col.color.replace('neo-', '') as any}>v1.0</TaskBadge>
-                       <TaskBadge variant="outline">Docs</TaskBadge>
+                       <Badge variant={col.color.replace('neo-', '') as any}>v1.0</Badge>
+                       <Badge variant="outline">Docs</Badge>
                    </div>
-                </TaskCardContent>
-              </TaskCard>
+                </CardContent>
+              </Card>
             ))}
           </div>
         ))}

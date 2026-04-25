@@ -5,6 +5,10 @@
   --color-neo-cyan: #22D3EE;
   --color-neo-green: #4ADE80;
   --color-neo-yellow: #FACC15;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
 }
 
 @layer base {
