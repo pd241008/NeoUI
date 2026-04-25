@@ -1,0 +1,127 @@
+name: Release NeoUI
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    name: Build Binary (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+            suffix: ""
+          - target: x86_64-apple-darwin
+            os: macos-latest
+            suffix: ""
+          - target: aarch64-apple-darwin
+            os: macos-latest
+            suffix: ""
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+            suffix: ".exe"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Build CLI
+        run: cargo build --release --target ${{ matrix.target }}
+        working-directory: ./script
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: neoui-${{ matrix.target }}
+          path: ./script/target/${{ matrix.target }}/release/neoui${{ matrix.suffix }}
+
+  publish:
+    name: Assemble & Publish to NPM
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./binaries
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Prepare NPM Package
+        run: |
+          mkdir -p dist/bin
+          # Move binaries to a organized structure
+          mv binaries/neoui-x86_64-unknown-linux-gnu/neoui dist/bin/neoui-linux
+          mv binaries/neoui-x86_64-apple-darwin/neoui dist/bin/neoui-macos-intel
+          mv binaries/neoui-aarch64-apple-darwin/neoui dist/bin/neoui-macos-arm
+          mv binaries/neoui-x86_64-pc-windows-msvc/neoui.exe dist/bin/neoui-win.exe
+          chmod +x dist/bin/*
+
+          # Create a thin index.js to delegate to the correct binary
+          cat <<EOF > dist/index.js
+          #!/usr/bin/env node
+          const { spawn } = require('child_process');
+          const path = require('path');
+          const os = require('os');
+
+          const platform = os.platform();
+          const arch = os.arch();
+          let binary = '';
+
+          if (platform === 'linux') binary = 'neoui-linux';
+          else if (platform === 'darwin') {
+            binary = arch === 'arm64' ? 'neoui-macos-arm' : 'neoui-macos-intel';
+          }
+          else if (platform === 'win32') binary = 'neoui-win.exe';
+
+          if (!binary) {
+            console.error('Unsupported platform:', platform);
+            process.exit(1);
+          }
+
+          const binaryPath = path.join(__dirname, 'bin', binary);
+          const args = process.argv.slice(2);
+
+          const child = spawn(binaryPath, args, { stdio: 'inherit' });
+          child.on('exit', (code) => process.exit(code || 0));
+          EOF
+
+          chmod +x dist/index.js
+
+          # Create package.json for distribution
+          cat <<EOF > dist/package.json
+          {
+            "name": "@neoui/cli",
+            "version": "${GITHUB_REF#refs/tags/v}",
+            "description": "High-performance Neo aesthetic component injector",
+            "bin": {
+              "neoui": "./index.js"
+            },
+            "files": ["bin/*", "index.js"],
+            "publishConfig": {
+              "access": "public"
+            }
+          }
+          EOF
+
+      - name: Publish to NPM
+        run: |
+          cd dist
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
