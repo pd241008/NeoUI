@@ -6,8 +6,26 @@ on:
       - 'v*'
 
 jobs:
+  check-branch:
+    name: Verify Tag is on Master
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check Branch
+        run: |
+          BRANCHES=$(git branch -r --contains ${{ github.sha }})
+          if echo "$BRANCHES" | grep -qE "origin/(master|main)"; then
+            echo "Success: Tag is on master/main branch."
+          else
+            echo "Error: Tag is not on master or main. Found on: $BRANCHES"
+            exit 1
+          fi
+
   build:
     name: Build Binary (${{ matrix.target }})
+    needs: check-branch
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
