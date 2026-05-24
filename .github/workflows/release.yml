@@ -130,12 +130,15 @@ jobs:
             "bin": {
               "neoui": "./index.js"
             },
-            "files": ["bin/*", "index.js"],
+            "files": ["bin/*", "index.js", "README.md"],
             "publishConfig": {
               "access": "public"
             }
           }
           EOF
+
+          # Copy README.md to dist so NPM displays it
+          cp README.md dist/README.md
 
       - name: Publish to NPM
         run: npm publish ./dist

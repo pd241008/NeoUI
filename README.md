@@ -23,23 +23,23 @@ NeoUI is structured as a modular ecosystem:
 ### 1. Initialize NeoUI
 Bootstrap your project with the Neo design system (colors, shadows, and base utilities).
 ```bash
-neoui init
+npx @pd241008/neoui init
 ```
 
 ### 2. Add Components
 Inject components directly into your codebase.
 ```bash
-neoui add button
-neoui add card
-neoui add badge
-neoui add tabs
+npx @pd241008/neoui add button
+npx @pd241008/neoui add card
+npx @pd241008/neoui add badge
+npx @pd241008/neoui add tabs
 ```
 
 ### 3. Theme Orchestration
 NeoUI comes with built-in theme support.
 ```bash
-neoui add theme-provider
-neoui add theme-toggle
+npx @pd241008/neoui add theme-provider
+npx @pd241008/neoui add theme-toggle
 ```
 
 ## 🧪 Testing
@@ -63,5 +63,5 @@ MIT
 ## 🎯 Project Roadmap
 - [x] **Phase 1**: Brutalist Design System Foundations.
 - [x] **Phase 2**: Rust CLI Scripts & Component Frontend Scaffold.
-- [ ] **Phase 3**: Component Library Completion.
-- [ ] **Phase 4**: Documentation & Release.
+- [x] **Phase 3**: Component Library Completion.
+- [x] **Phase 4**: Documentation & Release.
