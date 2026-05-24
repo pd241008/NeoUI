@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Badge } from "@/ui/badge/Badge";
 import { Card } from "@/ui/card/Card";
+import { FlipCard } from "@/ui/flipcard/FlipCard";
 import { ColorSwitch } from "@/components/docs/color-switch";
 import { cn } from "@/lib/utils";
 
@@ -36,14 +37,18 @@ export default function BadgePage() {
             <ColorSwitch value={activeVariant} onChange={setActiveVariant} />
           </div>
           
-          {/* STATIC SIZE: Removed scale, used large padding and text size for consistent layout */}
-          <Card variant={activeVariant === "default" ? "cyan" : activeVariant} className="p-16 md:p-32 flex flex-col gap-12 justify-center items-center transition-colors duration-500 min-h-[600px]">
-            <Badge variant={activeVariant} className="text-6xl py-4 px-10 shadow-[12px_12px_0px_0px_white]">
-              {activeVariant.toUpperCase()}
-            </Badge>
-            <Badge variant={activeVariant} className="text-3xl py-3 px-6 opacity-80">
-              STATUS: ACTIVE
-            </Badge>
+          <Card variant="default" className="p-16 md:p-32 flex flex-col gap-12 justify-center items-center transition-colors duration-500 min-h-[600px] bg-zinc-50 dark:bg-zinc-900/50">
+            <FlipCard naked={true}
+              backContent={
+                <Badge variant="default" className="text-4xl py-6 px-12 opacity-80">
+                  STATUS: ACTIVE
+                </Badge>
+              }
+            >
+              <Badge variant={activeVariant === "default" ? "cyan" : activeVariant} className="text-6xl py-6 px-12 shadow-[12px_12px_0px_0px_black] dark:shadow-[12px_12px_0px_0px_white]">
+                {activeVariant.toUpperCase()}
+              </Badge>
+            </FlipCard>
           </Card>
         </section>
 

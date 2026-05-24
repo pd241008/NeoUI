@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Button } from "@/ui/button/Button";
 import { Card } from "@/ui/card/Card";
+import { FlipCard } from "@/ui/flipcard/FlipCard";
 import { ColorSwitch } from "@/components/docs/color-switch";
 import { cn } from "@/lib/utils";
 
@@ -37,13 +38,18 @@ export default function ButtonPage() {
           </div>
           
           {/* STATIC SIZE: Removed scale, used large padding and text size for consistent layout */}
-          <Card variant={activeVariant === "default" ? "purple" : activeVariant} className="p-16 md:p-32 flex flex-col gap-12 justify-center items-center transition-colors duration-500 min-h-[600px]">
-            <Button variant={activeVariant} className="text-5xl px-16 py-10 shadow-[16px_16px_0px_0px_white] hover:shadow-[8px_8px_0px_0px_white]">
-              {activeVariant.toUpperCase()} IMPACT
-            </Button>
-            <Button variant={activeVariant} className="text-2xl px-10 py-5 opacity-80 decoration-slice">
-              SECONDARY ACTION
-            </Button>
+          <Card variant="default" className="p-16 md:p-32 flex flex-col gap-12 justify-center items-center transition-colors duration-500 min-h-[600px] bg-zinc-50 dark:bg-zinc-900/50">
+            <FlipCard naked={true}
+              backContent={
+                <Button variant="outline" className="text-3xl px-12 py-6 opacity-80 decoration-slice shadow-[16px_16px_0px_0px_black] dark:shadow-[16px_16px_0px_0px_white]">
+                  SECONDARY ACTION
+                </Button>
+              }
+            >
+              <Button variant={activeVariant === "default" ? "purple" : activeVariant} className="text-5xl px-16 py-10 shadow-[16px_16px_0px_0px_black] dark:shadow-[16px_16px_0px_0px_white] hover:shadow-[8px_8px_0px_0px_black] dark:hover:shadow-[8px_8px_0px_0px_white]">
+                {activeVariant.toUpperCase()} IMPACT
+              </Button>
+            </FlipCard>
           </Card>
         </section>
 
