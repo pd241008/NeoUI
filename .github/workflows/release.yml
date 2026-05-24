@@ -1,5 +1,8 @@
 name: Release NeoUI
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   push:
     tags:
@@ -127,18 +130,20 @@ jobs:
             "name": "@pd241008/neoui",
             "version": "${GITHUB_REF#refs/tags/v}",
             "description": "High-performance Neo aesthetic component injector",
+            "license": "MIT",
             "bin": {
               "neoui": "./index.js"
             },
-            "files": ["bin/*", "index.js", "README.md"],
+            "files": ["bin", "index.js", "README.md", "LICENSE"],
             "publishConfig": {
               "access": "public"
             }
           }
           EOF
 
-          # Copy README.md to dist so NPM displays it
+          # Copy documentation and license to dist so NPM displays them
           cp README.md dist/README.md
+          cp LICENSE dist/LICENSE
 
       - name: Publish to NPM
         run: npm publish ./dist
