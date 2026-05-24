@@ -37,14 +37,14 @@ export default function InputPage() {
             <ColorSwitch value={activeVariant} onChange={setActiveVariant} />
           </div>
 
-          <Card variant={activeVariant === "default" ? "green" : activeVariant} className="p-16 md:p-32 flex flex-col justify-center items-center transition-colors duration-500 gap-16">
-            {/* STATIC SIZE: Use large text and padding instead of scale */}
-            <div className="w-full max-w-2xl">
-              <Input placeholder="ACTIVE INPUT FIELD..." variant={activeVariant} className="text-4xl p-10 shadow-[20px_20px_0_0_black]" />
-            </div>
-            <div className="w-full max-w-lg opacity-80">
-              <Input placeholder="SECONDARY INPUT..." variant={activeVariant} className="text-2xl p-6" />
-            </div>
+          <Card variant="default" className="p-16 md:p-32 flex flex-col justify-center items-center transition-colors duration-500 gap-16 min-h-[600px] bg-zinc-50 dark:bg-zinc-900/50">
+            <FlipCard naked={true} className="w-full max-w-2xl"
+              backContent={
+                <Input placeholder="SECONDARY INPUT..." variant="default" className="text-3xl p-8" />
+              }
+            >
+              <Input placeholder="ACTIVE INPUT FIELD..." variant={activeVariant === "default" ? "green" : activeVariant} className="text-4xl p-10 shadow-[20px_20px_0_0_black] dark:shadow-[20px_20px_0_0_white]" />
+            </FlipCard>
           </Card>
         </section>
 

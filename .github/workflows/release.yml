@@ -106,7 +106,7 @@ jobs:
           # Create package.json for distribution
           cat <<EOF > dist/package.json
           {
-            "name": "@neoui/cli",
+            "name": "@pd241008/neoui",
             "version": "${GITHUB_REF#refs/tags/v}",
             "description": "High-performance Neo aesthetic component injector",
             "bin": {

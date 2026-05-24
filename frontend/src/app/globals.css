@@ -36,3 +36,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .neo-border {
+    @apply border-2 border-black dark:border-white;
+  }
+  .neo-border-thick {
+    @apply border-4 border-black dark:border-white;
+  }
+  .neo-shadow, .shadow-neo {
+    box-shadow: 4px 4px 0px 0px var(--color-foreground);
+  }
+  .neo-shadow-hover {
+    @apply transition-all;
+  }
+  .neo-shadow-hover:hover {
+    box-shadow: none;
+    transform: translate(4px, 4px);
+  }
+}

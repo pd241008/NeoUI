@@ -16,10 +16,10 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   const variantClasses = {
     default: "bg-background text-foreground",
-    purple: "bg-neo-purple text-white shadow-[8px_8px_0px_0px_white]",
-    cyan: "bg-neo-cyan text-black shadow-[8px_8px_0px_0px_white]",
-    green: "bg-neo-green text-black shadow-[8px_8px_0px_0px_white]",
-    yellow: "bg-neo-yellow text-black shadow-[8px_8px_0px_0px_white]",
+    purple: "bg-neo-purple text-white shadow-[8px_8px_0px_0px_black] dark:shadow-[8px_8px_0px_0px_white]",
+    cyan: "bg-neo-cyan text-black shadow-[8px_8px_0px_0px_black] dark:shadow-[8px_8px_0px_0px_white]",
+    green: "bg-neo-green text-black shadow-[8px_8px_0px_0px_black] dark:shadow-[8px_8px_0px_0px_white]",
+    yellow: "bg-neo-yellow text-black shadow-[8px_8px_0px_0px_black] dark:shadow-[8px_8px_0px_0px_white]",
   };
 
   return (

@@ -58,3 +58,10 @@ npm exec vitest run
 
 ## 📜 License
 MIT
+
+
+## 🎯 Project Roadmap
+- [x] **Phase 1**: Brutalist Design System Foundations.
+- [x] **Phase 2**: Rust CLI Scripts & Component Frontend Scaffold.
+- [ ] **Phase 3**: Component Library Completion.
+- [ ] **Phase 4**: Documentation & Release.
