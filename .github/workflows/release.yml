@@ -138,8 +138,6 @@ jobs:
           EOF
 
       - name: Publish to NPM
-        run: |
-          cd dist
-          npm publish
+        run: npm publish ./dist
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
