@@ -1,8 +1,8 @@
 // @ts-nocheck
-"use client";
+"use client"
+
 import * as React from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
-
 import { cn } from "@/lib/utils"
 
 const Tabs = TabsPrimitive.Root
@@ -14,7 +14,7 @@ const TabsList = React.forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      "inline-flex h-12 items-center justify-center neo-border bg-muted p-1 text-muted-foreground neo-shadow",
+      "inline-flex h-10 items-center justify-center rounded-none border-b-2 border-black bg-muted p-1 text-muted-foreground dark:border-zinc-800 dark:bg-zinc-950",
       className
     )}
     {...props}
@@ -29,7 +29,7 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "inline-flex items-center justify-center whitespace-nowrap px-3 py-1.5 text-sm font-black uppercase tracking-wider ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-neo-cyan data-[state=active]:text-black data-[state=active]:neo-border",
+      "inline-flex items-center justify-center whitespace-nowrap rounded-none border-2 border-transparent px-3 py-1.5 text-sm font-black uppercase tracking-widest transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=active]:border-black data-[state=active]:bg-neo-purple data-[state=active]:text-black data-[state=active]:shadow-[2px_2px_0px_black] dark:data-[state=active]:border-white dark:data-[state=active]:shadow-[2px_2px_0px_white]",
       className
     )}
     {...props}

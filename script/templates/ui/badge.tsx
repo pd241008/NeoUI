@@ -1,38 +1,30 @@
 // @ts-nocheck
-"use client";
-import React from "react";
-import { cn } from "@/lib/utils";
+import * as React from "react"
+import { cn } from "@/lib/utils"
 
-type BadgeProps = React.HTMLAttributes<HTMLSpanElement> & {
-  variant?: "default" | "success" | "error" | "purple" | "cyan" | "green" | "yellow";
-};
+export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: "purple" | "cyan" | "green" | "yellow" | "outline"
+}
 
-export const Badge: React.FC<BadgeProps> = ({
-  className,
-  children,
-  variant = "purple",
-  ...props
-}) => {
-  const variantClasses = {
-    default: "bg-neo-purple text-white",
-    success: "bg-neo-green text-black",
-    error: "bg-red-500 text-white",
-    purple: "bg-neo-purple text-white",
+function Badge({ className, variant = "purple", ...props }: BadgeProps) {
+  const variants: Record<string, string> = {
+    purple: "bg-neo-purple text-black",
     cyan: "bg-neo-cyan text-black",
     green: "bg-neo-green text-black",
     yellow: "bg-neo-yellow text-black",
-  };
+    outline: "text-foreground bg-transparent",
+  }
 
   return (
-    <span
+    <div
       className={cn(
-        "inline-block px-2 py-0.5 text-xs font-black uppercase tracking-wider neo-border rounded-sm",
-        variantClasses[variant],
+        "inline-flex items-center rounded-none border-2 border-black px-2.5 py-0.5 text-xs font-black uppercase tracking-widest transition-colors shadow-[2px_2px_0px_black] dark:border-white dark:shadow-[2px_2px_0px_white]",
+        variants[variant],
         className
       )}
       {...props}
-    >
-      {children}
-    </span>
-  );
-};
+    />
+  )
+}
+
+export { Badge }
